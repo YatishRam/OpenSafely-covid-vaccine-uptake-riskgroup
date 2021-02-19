@@ -1,0 +1,131 @@
+version: '3.0'
+
+expectations:
+  population_size: 1000
+
+actions:
+  generate_summary_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_summary
+    outputs:
+      highly_sensitive:
+        cohort: output/input_summary.csv
+
+  generate_summary_riskgroup_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_summary_riskgroup
+    outputs:
+      highly_sensitive:
+        cohort: output/input_summary_riskgroup.csv
+
+  generate_chd_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_chd
+    outputs:
+      highly_sensitive:
+        cohort: output/input_chd.csv
+
+  generate_resp_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_resp
+    outputs:
+      highly_sensitive:
+        cohort: output/input_resp.csv
+
+  generate_ckd_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_ckd
+    outputs:
+      highly_sensitive:
+        cohort: output/input_ckd.csv
+
+  generate_cld_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_cld
+    outputs:
+      highly_sensitive:
+        cohort: output/input_cld.csv
+
+  generate_diab_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_diab
+    outputs:
+      highly_sensitive:
+        cohort: output/input_diab.csv
+
+  generate_immdx_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_immdx
+    outputs:
+      highly_sensitive:
+        cohort: output/input_immdx.csv
+
+  generate_cns_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_cns
+    outputs:
+      highly_sensitive:
+        cohort: output/input_cns.csv
+
+  generate_spln_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_spln
+    outputs:
+      highly_sensitive:
+        cohort: output/input_spln.csv
+
+  generate_learndis_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_learndis
+    outputs:
+      highly_sensitive:
+        cohort: output/input_learndis.csv
+
+  generate_mental_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_mental
+    outputs:
+      highly_sensitive:
+        cohort: output/input_mental.csv
+
+  generate_obesity_otherrisk_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_obesity_otherrisk
+    outputs:
+      highly_sensitive:
+        cohort: output/input_obesity_otherrisk.csv
+
+  generate_obesity_no_otherrisk_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_obesity_no_otherrisk
+    outputs:
+      highly_sensitive:
+        cohort: output/input_obesity_no_otherrisk.csv
+
+  generate_shield_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_highrisk_shielding
+    outputs:
+      highly_sensitive:
+        cohort: output/input_highrisk_shielding.csv
+
+  generate_hhld_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_hhld
+    outputs:
+      highly_sensitive:
+        cohort: output/input_hhld.csv
+
+  generate_hcw_carehome_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_hcw_carehome
+    outputs:
+      highly_sensitive:
+        cohort: output/input_hcw_carehome.csv
+
+  generate_hcw_domcare_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_hcw_domcare
+    outputs:
+      highly_sensitive:
+        cohort: output/input_hcw_domcare.csv
+
+  generate_hcw_nursehome_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_hcw_nursehome
+    outputs:
+      highly_sensitive:
+        cohort: output/input_hcw_nursehome.csv
+
+  generate_carer_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_carer
+    outputs:
+      highly_sensitive:
+        cohort: output/input_carer.csv
+
+  generate_longres_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_longres
+    outputs:
+      highly_sensitive:
+        cohort: output/input_longres.csv

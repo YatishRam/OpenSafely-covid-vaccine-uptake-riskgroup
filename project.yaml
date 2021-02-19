@@ -1,0 +1,426 @@
+version: '3.0'
+
+expectations:
+  population_size: 1000
+
+actions:
+
+  generate_carer_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_carer --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/carer
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/carer/input_carer_*.csv
+  
+  generate_carer_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_carer --output-dir=output/measures/carer
+    needs: [generate_carer_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/carer/measure_*.csv
+
+  merge_carer_measures:
+    run: r:latest analysis/merge_measures.R carer
+    needs: [generate_carer_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/carer.csv
+
+  generate_chd_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_chd --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/chd
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/chd/input_chd_*.csv
+  
+  generate_chd_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_chd --output-dir=output/measures/chd
+    needs: [generate_chd_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/chd/measure_*.csv
+
+  merge_chd_measures:
+    run: r:latest analysis/merge_measures.R chd
+    needs: [generate_chd_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/chd.csv
+
+  generate_ckd_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_ckd --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/ckd
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/ckd/input_ckd_*.csv
+  
+  generate_ckd_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_ckd --output-dir=output/measures/ckd
+    needs: [generate_ckd_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/ckd/measure_*.csv
+
+  merge_ckd_measures:
+    run: r:latest analysis/merge_measures.R ckd
+    needs: [generate_ckd_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/ckd.csv
+
+  generate_cld_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_cld --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/cld
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/cld/input_cld_*.csv
+  
+  generate_cld_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_cld --output-dir=output/measures/cld
+    needs: [generate_cld_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/cld/measure_*.csv
+
+  merge_cld_measures:
+    run: r:latest analysis/merge_measures.R cld
+    needs: [generate_cld_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/cld.csv
+
+  generate_cns_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_cns --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/cns
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/cns/input_cns_*.csv
+  
+  generate_cns_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_cns --output-dir=output/measures/cns
+    needs: [generate_cns_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/cns/measure_*.csv
+
+  merge_cns_measures:
+    run: r:latest analysis/merge_measures.R cns
+    needs: [generate_cns_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/cns.csv
+
+  generate_diab_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_diab --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/diab
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/diab/input_diab_*.csv
+  
+  generate_diab_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_diab --output-dir=output/measures/diab
+    needs: [generate_diab_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/diab/measure_*.csv
+
+  merge_diab_measures:
+    run: r:latest analysis/merge_measures.R diab
+    needs: [generate_diab_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/diab.csv
+
+  generate_hcw_carehome_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_hcw_carehome --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/hcw_carehome
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/hcw_carehome/input_hcw_carehome_*.csv
+  
+  generate_hcw_carehome_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_hcw_carehome --output-dir=output/measures/hcw_carehome
+    needs: [generate_hcw_carehome_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/hcw_carehome/measure_*.csv
+
+  merge_hcw_carehome_measures:
+    run: r:latest analysis/merge_measures.R hcw_carehome
+    needs: [generate_hcw_carehome_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/hcw_carehome.csv
+
+  generate_hcw_domcare_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_hcw_domcare --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/hcw_domcare
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/hcw_domcare/input_hcw_domcare_*.csv
+  
+  generate_hcw_domcare_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_hcw_domcare --output-dir=output/measures/hcw_domcare
+    needs: [generate_hcw_domcare_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/hcw_domcare/measure_*.csv
+
+  merge_hcw_domcare_measures:
+    run: r:latest analysis/merge_measures.R hcw_domcare
+    needs: [generate_hcw_domcare_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/hcw_domcare.csv
+
+  generate_hcw_nursehome_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_hcw_nursehome --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/hcw_nursehome
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/hcw_nursehome/input_hcw_nursehome_*.csv
+  
+  generate_hcw_nursehome_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_hcw_nursehome --output-dir=output/measures/hcw_nursehome
+    needs: [generate_hcw_nursehome_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/hcw_nursehome/measure_*.csv
+
+  merge_hcw_nursehome_measures:
+    run: r:latest analysis/merge_measures.R hcw_nursehome
+    needs: [generate_hcw_nursehome_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/hcw_nursehome.csv
+
+  generate_hhld_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_hhld --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/hhld
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/hhld/input_hhld_*.csv
+  
+  generate_hhld_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_hhld --output-dir=output/measures/hhld
+    needs: [generate_hhld_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/hhld/measure_*.csv
+
+  merge_hhld_measures:
+    run: r:latest analysis/merge_measures.R hhld
+    needs: [generate_hhld_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/hhld.csv
+
+  generate_highrisk_shielding_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_highrisk_shielding --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/highrisk_shielding
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/highrisk_shielding/input_highrisk_shielding_*.csv
+  
+  generate_highrisk_shielding_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_highrisk_shielding --output-dir=output/measures/highrisk_shielding
+    needs: [generate_highrisk_shielding_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/highrisk_shielding/measure_*.csv
+
+  merge_highrisk_shielding_measures:
+    run: r:latest analysis/merge_measures.R highrisk_shielding
+    needs: [generate_highrisk_shielding_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/highrisk_shielding.csv
+
+  generate_immdx_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_immdx --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/immdx
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/immdx/input_immdx_*.csv
+  
+  generate_immdx_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_immdx --output-dir=output/measures/immdx
+    needs: [generate_immdx_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/immdx/measure_*.csv
+
+  merge_immdx_measures:
+    run: r:latest analysis/merge_measures.R immdx
+    needs: [generate_immdx_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/immdx.csv
+
+  generate_learndis_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_learndis --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/learndis
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/learndis/input_learndis_*.csv
+  
+  generate_learndis_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_learndis --output-dir=output/measures/learndis
+    needs: [generate_learndis_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/learndis/measure_*.csv
+
+  merge_learndis_measures:
+    run: r:latest analysis/merge_measures.R learndis
+    needs: [generate_learndis_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/learndis.csv
+
+  generate_longres_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_longres --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/longres
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/longres/input_longres_*.csv
+  
+  generate_longres_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_longres --output-dir=output/measures/longres
+    needs: [generate_longres_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/longres/measure_*.csv
+
+  merge_longres_measures:
+    run: r:latest analysis/merge_measures.R longres
+    needs: [generate_longres_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/longres.csv
+
+  generate_mental_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_mental --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/mental
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/mental/input_mental_*.csv
+  
+  generate_mental_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_mental --output-dir=output/measures/mental
+    needs: [generate_mental_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/mental/measure_*.csv
+
+  merge_mental_measures:
+    run: r:latest analysis/merge_measures.R mental
+    needs: [generate_mental_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/mental.csv
+
+  generate_obesity_no_otherrisk_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_obesity_no_otherrisk --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/obesity_no_otherrisk
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/obesity_no_otherrisk/input_obesity_no_otherrisk_*.csv
+  
+  generate_obesity_no_otherrisk_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_obesity_no_otherrisk --output-dir=output/measures/obesity_no_otherrisk
+    needs: [generate_obesity_no_otherrisk_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/obesity_no_otherrisk/measure_*.csv
+
+  merge_obesity_no_otherrisk_measures:
+    run: r:latest analysis/merge_measures.R obesity_no_otherrisk
+    needs: [generate_obesity_no_otherrisk_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/obesity_no_otherrisk.csv
+
+  generate_obesity_otherrisk_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_obesity_otherrisk --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/obesity_otherrisk
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/obesity_otherrisk/input_obesity_otherrisk_*.csv
+  
+  generate_obesity_otherrisk_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_obesity_otherrisk --output-dir=output/measures/obesity_otherrisk
+    needs: [generate_obesity_otherrisk_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/obesity_otherrisk/measure_*.csv
+
+  merge_obesity_otherrisk_measures:
+    run: r:latest analysis/merge_measures.R obesity_otherrisk
+    needs: [generate_obesity_otherrisk_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/obesity_otherrisk.csv
+
+  generate_resp_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_resp --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/resp
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/resp/input_resp_*.csv
+  
+  generate_resp_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_resp --output-dir=output/measures/resp
+    needs: [generate_resp_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/resp/measure_*.csv
+
+  merge_resp_measures:
+    run: r:latest analysis/merge_measures.R resp
+    needs: [generate_resp_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/resp.csv
+
+  generate_spln_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_spln --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/spln
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/spln/input_spln_*.csv
+  
+  generate_spln_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_spln --output-dir=output/measures/spln
+    needs: [generate_spln_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/spln/measure_*.csv
+
+  merge_spln_measures:
+    run: r:latest analysis/merge_measures.R spln
+    needs: [generate_spln_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/spln.csv
+
+  generate_summary_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_summary --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/summary
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/summary/input_summary_*.csv
+  
+  generate_summary_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_summary --output-dir=output/measures/summary
+    needs: [generate_summary_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/summary/measure_*.csv
+
+  merge_summary_measures:
+    run: r:latest analysis/merge_measures.R summary
+    needs: [generate_summary_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/summary.csv
+
+  generate_summary_riskgroup_cohort_activity:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_summary_riskgroup --index-date-range "2021-01-01 to 2021-01-01 by month" --output-dir=output/measures/summary_riskgroup
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/summary_riskgroup/input_summary_riskgroup_*.csv
+  
+  generate_summary_riskgroup_measures_activity:
+    run: cohortextractor:latest generate_measures --study-definition study_definition_summary_riskgroup --output-dir=output/measures/summary_riskgroup
+    needs: [generate_summary_riskgroup_cohort_activity]
+    outputs:
+      moderately_sensitive:
+        measure_csv: output/measures/summary_riskgroup/measure_*.csv
+
+  merge_summary_riskgroup_measures:
+    run: r:latest analysis/merge_measures.R summary_riskgroup
+    needs: [generate_summary_riskgroup_measures_activity]
+    outputs:
+      moderately_sensitive:
+        figure: output/measures/summary_riskgroup.csv
