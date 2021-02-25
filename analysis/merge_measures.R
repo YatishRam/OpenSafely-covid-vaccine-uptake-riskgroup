@@ -16,10 +16,16 @@ if (measure_count == 1){
 } else {
 	
 	library(plyr)
-	import.list <- llply(measures, read.csv)	
 
-	library(reshape)
-	data <- merge_recurse(import.list)
+	import.list <- llply(measures, read.csv)
+	
+	import.list <- llply(import.list, subset, select=-c(value))
+	
+	data <- Reduce(	
+		function(x, y) 
+		merge(x, y, by=c('stp', 'age_group','population', 'date'), all=TRUE), 
+		import.list
+	)
 
 	write.csv(data, filename)
 }

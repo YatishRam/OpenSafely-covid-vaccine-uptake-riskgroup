@@ -390,10 +390,17 @@ actions:
     outputs:
       highly_sensitive:
         cohort: output/measures/summary/input_summary_*.csv
+
+  generate_summary_unstated_dose_cohort_activity:
+    run: r:latest analysis/add_unstated_dose.R summary
+    needs: [generate_summary_cohort_activity]
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/summary/input_summary*.csv
   
   generate_summary_measures_activity:
     run: cohortextractor:latest generate_measures --study-definition study_definition_summary --output-dir=output/measures/summary
-    needs: [generate_summary_cohort_activity]
+    needs: [generate_summary_unstated_dose_cohort_activity]
     outputs:
       moderately_sensitive:
         measure_csv: output/measures/summary/measure_*.csv
@@ -410,10 +417,17 @@ actions:
     outputs:
       highly_sensitive:
         cohort: output/measures/summary_riskgroup/input_summary_riskgroup_*.csv
+
+  generate_summary_riskgroup_unstated_dose_cohort_activity:
+    run: r:latest analysis/add_unstated_dose.R summary_riskgroup
+    needs: [generate_summary_riskgroup_cohort_activity]
+    outputs:
+      highly_sensitive:
+        cohort: output/measures/summary_riskgroup/input_summary_riskgroup*.csv
   
   generate_summary_riskgroup_measures_activity:
     run: cohortextractor:latest generate_measures --study-definition study_definition_summary_riskgroup --output-dir=output/measures/summary_riskgroup
-    needs: [generate_summary_riskgroup_cohort_activity]
+    needs: [generate_summary_riskgroup_unstated_dose_cohort_activity]
     outputs:
       moderately_sensitive:
         measure_csv: output/measures/summary_riskgroup/measure_*.csv

@@ -89,18 +89,6 @@ study = StudyDefinition(
         return_expectations = { "incidence": 0.4 }
         ),
 
-    any_first_dose=patients.with_these_clinical_events(any_first_dose_code,
-        returning="binary_flag",
-        between = ["index_date", "index_date + 1 month"],
-        return_expectations = { "incidence": 0.4 }
-        ),
-    
-    any_second_dose=patients.with_these_clinical_events(any_second_dose_code,
-        returning="binary_flag",
-        between = ["index_date", "index_date + 1 month"],
-        return_expectations = { "incidence": 0.4 }
-        ),
-
     az_first_dose=patients.with_these_clinical_events(az_first_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
@@ -267,13 +255,13 @@ measures = [
         denominator="population",
         group_by = ["stp", "age_group"]),
 
-    Measure(id="any_second_dose_stp",
-        numerator="any_second_dose",
+    Measure(id="unstated_second_dose_stp",
+        numerator="unstated_second_dose",
         denominator="population",
         group_by = ["stp", "age_group"]),
 
-    Measure(id="any_first_dose_stp",
-        numerator="any_first_dose",
+    Measure(id="unstated_first_dose_stp",
+        numerator="unstated_first_dose",
         denominator="population",
         group_by = ["stp", "age_group"]),
     ]

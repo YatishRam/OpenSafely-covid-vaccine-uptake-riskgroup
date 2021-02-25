@@ -4,11 +4,8 @@ from cohortextractor import (
 )
 
 # Vaccination doses
-first_dose_code = codelist("COVADM1_COD", system="snomed")
-second_dose_code = codelist("COVADM2_COD", system="snomed")
-
-any_first_dose_code = codelist("COVRX1_COD", system="snomed")
-any_second_dose_code = codelist("COVRX2_COD", system="snomed")
+first_dose_code = codelist("COVRX1_COD", system="snomed")
+second_dose_code = codelist("COVRX2_COD", system="snomed")
 
 az_first_dose_code = codelist("AZD1RX_COD", system="snomed")
 az_second_dose_code = codelist("AZD2RX_COD", system="snomed")

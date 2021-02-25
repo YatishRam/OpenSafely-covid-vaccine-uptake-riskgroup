@@ -34,7 +34,7 @@ study = StudyDefinition(
                                                         return_expectations= { "incidence": 0.6 },)
         ),
 
-    age=patients.age_as_of(index_date,
+    age = patients.age_as_of(index_date,
         return_expectations={
         "rate" : "universal",
         "int" : {"distribution" : "population_ages"}
@@ -81,109 +81,97 @@ study = StudyDefinition(
              "category": {"ratios": {"STP1": 0.5, "STP2": 0.5}},
         },),
 
-    first_dose=patients.with_these_clinical_events(first_dose_code,
+    first_dose = patients.with_these_clinical_events(first_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
     
-    second_dose=patients.with_these_clinical_events(second_dose_code,
+    second_dose = patients.with_these_clinical_events(second_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
 
-    any_first_dose=patients.with_these_clinical_events(any_first_dose_code,
+    az_first_dose = patients.with_these_clinical_events(az_first_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
     
-    any_second_dose=patients.with_these_clinical_events(any_second_dose_code,
+    az_second_dose = patients.with_these_clinical_events(az_second_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
 
-    az_first_dose=patients.with_these_clinical_events(az_first_dose_code,
+    pf_first_dose = patients.with_these_clinical_events(pf_first_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
     
-    az_second_dose=patients.with_these_clinical_events(az_second_dose_code,
+    pf_second_dose = patients.with_these_clinical_events(pf_second_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
 
-    pf_first_dose=patients.with_these_clinical_events(pf_first_dose_code,
+    mo_first_dose = patients.with_these_clinical_events(mo_first_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
     
-    pf_second_dose=patients.with_these_clinical_events(pf_second_dose_code,
+    mo_second_dose = patients.with_these_clinical_events(mo_second_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
 
-    mo_first_dose=patients.with_these_clinical_events(mo_first_dose_code,
+    nx_first_dose = patients.with_these_clinical_events(nx_first_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
     
-    mo_second_dose=patients.with_these_clinical_events(mo_second_dose_code,
+    nx_second_dose = patients.with_these_clinical_events(nx_second_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
 
-    nx_first_dose=patients.with_these_clinical_events(nx_first_dose_code,
+    jn_first_dose = patients.with_these_clinical_events(jn_first_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
     
-    nx_second_dose=patients.with_these_clinical_events(nx_second_dose_code,
+    jn_second_dose = patients.with_these_clinical_events(jn_second_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
 
-    jn_first_dose=patients.with_these_clinical_events(jn_first_dose_code,
+    gs_first_dose = patients.with_these_clinical_events(gs_first_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
     
-    jn_second_dose=patients.with_these_clinical_events(jn_second_dose_code,
+    gs_second_dose = patients.with_these_clinical_events(gs_second_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
 
-    gs_first_dose=patients.with_these_clinical_events(gs_first_dose_code,
+    vl_first_dose = patients.with_these_clinical_events(vl_first_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
         ),
     
-    gs_second_dose=patients.with_these_clinical_events(gs_second_dose_code,
-        returning="binary_flag",
-        between = ["index_date", "index_date + 1 month"],
-        return_expectations = { "incidence": 0.4 }
-        ),
-
-    vl_first_dose=patients.with_these_clinical_events(vl_first_dose_code,
-        returning="binary_flag",
-        between = ["index_date", "index_date + 1 month"],
-        return_expectations = { "incidence": 0.4 }
-        ),
-    
-    vl_second_dose=patients.with_these_clinical_events(vl_second_dose_code,
+    vl_second_dose = patients.with_these_clinical_events(vl_second_dose_code,
         returning="binary_flag",
         between = ["index_date", "index_date + 1 month"],
         return_expectations = { "incidence": 0.4 }
@@ -271,13 +259,13 @@ measures = [
         denominator="population",
         group_by = ["stp", "age_group"]),
 
-    Measure(id="any_second_dose_stp",
-        numerator="any_second_dose",
+    Measure(id="unstated_second_dose_stp",
+        numerator="unstated_second_dose",
         denominator="population",
         group_by = ["stp", "age_group"]),
 
-    Measure(id="any_first_dose_stp",
-        numerator="any_first_dose",
+    Measure(id="unstated_first_dose_stp",
+        numerator="unstated_first_dose",
         denominator="population",
         group_by = ["stp", "age_group"]),
-    ]
+]
